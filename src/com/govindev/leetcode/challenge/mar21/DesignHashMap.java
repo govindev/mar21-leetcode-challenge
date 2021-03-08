@@ -11,12 +11,12 @@ public class DesignHashMap {
 	int[] values;
 
 	/** Initialize your data structure here. */
-    public MyHashMap() {
-        values = new int[1000000];
-        for (int i = 0; i < 1000000; i++) {
-            values[i] = -1;
-        }
-    }
+	public void MyHashMap() {
+		values = new int[1000000];
+		for (int i = 0; i < 1000000; i++) {
+			values[i] = -1;
+		}
+	}
 
 	/** value will always be non-negative. */
 	public void put(int key, int value) {
