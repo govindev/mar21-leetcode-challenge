@@ -14,19 +14,29 @@ import java.util.HashMap;
 
 public class EncodeAndDecodeTinyURL {
 	Map<Integer, String> urls = new HashMap<Integer, String>();
-	int i = 0;
+    int i = 0;
+    // Encodes a URL to a shortened URL.
+    public String encode1(String longUrl) {
+        urls.put(i, longUrl);
+        return "http://tinyurl.com/" + i++;
+    }
 
-	// Encodes a URL to a shortened URL.
-	public String encode(String longUrl) {
-		urls.put(i, longUrl);
-		return "http://tinyurl.com/" + i++;
-	}
-
-	// Decodes a shortened URL to its original URL.
-	public String decode(String shortUrl) {
-		shortUrl = shortUrl.replace("http://tinyurl.com/", "");
-		return urls.get(Integer.parseInt(shortUrl));
-	}
+    // Decodes a shortened URL to its original URL.
+    public String decode1(String shortUrl) {
+        shortUrl = shortUrl.replace("http://tinyurl.com/", "");
+        return urls.get(Integer.parseInt(shortUrl));
+    }
+    
+    // Using Hashcode
+    public String encode(String longUrl) {
+        urls.put(longUrl.hashCode(), longUrl);
+        return "http://tinyurl.com/" + longUrl.hashCode();
+    }
+    
+    public String decode(String shortUrl) {
+        shortUrl = shortUrl.replace("http://tinyurl.com/", "");
+        return urls.get(Integer.parseInt(shortUrl));
+    }
 }
 //Your Codec object will be instantiated and called as such:
 //Codec codec = new Codec();
