@@ -9,7 +9,7 @@ package com.govindev.leetcode.challenge.mar21;
  *
  */
 public class BestTimeToBuyAndSellStockWithTransactionFee {
-	public int maxProfit(int[] prices, int fee) {
+	public int maxProfit1(int[] prices, int fee) {
 		int[] maxProfits = new int[prices.length];
 		maxProfits[prices.length - 1] = 0;
 		for (int i = prices.length - 2; i >= 0; i--) {
@@ -24,5 +24,14 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
 		}
 		return maxProfits[0];
 
+	}
+
+	public int maxProfit(int[] prices, int fee) {
+		int cash = 0, hold = -prices[0];
+		for (int i = 1; i < prices.length; i++) {
+			cash = Math.max(cash, hold + prices[i] - fee);
+			hold = Math.max(hold, cash - prices[i]);
+		}
+		return cash;
 	}
 }
